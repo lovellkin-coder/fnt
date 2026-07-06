@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(가칭) 디지털존 F&T 사업 기획안</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+    color: #1A1915;
+    background: #F5F5F3;
+    padding: 40px 32px;
+    line-height: 1.6;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+
+  /* ── HEADER ── */
+  h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+  .subtitle { font-size: 14px; color: #6B6860; margin-bottom: 48px; }
+
+  /* ── SECTION TITLE ── */
+  .sec-block { margin-top: 52px; }
+  .sec-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1915;
+    margin-bottom: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .sec-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1915;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .sec-desc {
+    font-size: 13px;
+    color: #6B6860;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1.5px solid #DEDBD5;
+  }
+
+  /* ── CARDS ── */
+  .card { background: #fff; border: 0.5px solid #DEDBD5; border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+  .card-blue  { background: #E8F0FB; border: 0.5px solid #B0C8EF; border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+  .card-gray  { background: #EFEFED; border: 0.5px solid #DEDBD5; border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; }
+  .card-navy  { background: #1A1F3A; border-radius: 10px; padding: 20px 24px; margin-bottom: 10px; }
+  .card-green-bg { background: #EAF3DE; border: 0.5px solid #C2DFA0; border-radius: 10px; padding: 18px 20px; margin-bottom: 10px; }
+
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+
+  /* ── GRID ── */
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+
+  /* ── BADGE ── */
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 6px; margin-bottom: 8px; }
+  .badge-bl { background: #E8F0FB; color: #185FA5; }
+  .badge-gr { background: #EFEFED; color: #6B6860; }
+  .badge-nv { background: #1A1F3A; color: #fff; font-family: 'IBM Plex Mono', monospace; }
+
+  /* ── BULLETS ── */
+  ul.bull { list-style: none; padding: 0; }
+  ul.bull li { padding: 3px 0 3px 16px; position: relative; font-size: 13px; line-height: 1.6; }
+  ul.bull li::before { content: '·'; position: absolute; left: 0; font-weight: 700; }
+  ul.bull.dark li { color: #1A1915; } ul.bull.dark li::before { color: #1A1915; }
+  ul.bull.gray li { color: #6B6860; } ul.bull.gray li::before { color: #6B6860; }
+  ul.bull.blue li { color: #185FA5; } ul.bull.blue li::before { color: #185FA5; }
+  ul.bull.green li { color: #3B5010; } ul.bull.green li::before { color: #3B6D11; }
+  ul.bull.white li { color: rgba(255,255,255,0.85); } ul.bull.white li::before { color: #fff; }
+
+  hr.div { border: none; border-top: 0.5px solid #DEDBD5; margin: 14px 0; }
+
+  /* ── STEP FLOW ── */
+  .flow-wrap {
+    background: #fff;
+    border: 0.5px solid #DEDBD5;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 10px;
+  }
+  .flow-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6B6860;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .flow-step {
+    background: #E8F0FB;
+    border: 0.5px solid #B0C8EF;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #185FA5;
+    text-align: center;
+  }
+  .flow-arrow { color: #6B6860; font-size: 13px; }
+
+  /* ── ARCH SVG WRAPPER ── */
+  .arch-wrap { background: #fff; border: 0.5px solid #DEDBD5; border-radius: 10px; padding: 24px 20px; margin-bottom: 10px; overflow-x: auto; }
+
+  /* ── PRICING ── */
+  .pricing-type { margin-bottom: 20px; }
+  .pricing-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #6B6860;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pricing-box {
+    background: #fff;
+    border: 0.5px solid #DEDBD5;
+    border-radius: 10px;
+    padding: 16px 18px;
+    min-width: 0;
+  }
+  .pricing-box-blue {
+    background: #E8F0FB;
+    border: 0.5px solid #B0C8EF;
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .pricing-box h4, .pricing-box-blue h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; }
+  .pricing-box-blue h4 { color: #185FA5; }
+
+  /* 과금 흐름 도형 */
+  .billing-flow { display: flex; align-items: center; gap: 6px; margin: 10px 0; }
+  .bf-node { border-radius: 8px; padding: 8px 12px; text-align: center; flex: 1; }
+  .bf-node.vendor { background: #EFEFED; border: 0.5px solid #DEDBD5; }
+  .bf-node.us     { background: #1A1F3A; color: #fff; }
+  .bf-node.cust   { background: #EAF3DE; border: 0.5px solid #C2DFA0; }
+  .bf-node .bf-name { font-size: 11px; color: #6B6860; margin-bottom: 3px; }
+  .bf-node.us .bf-name { color: rgba(255,255,255,0.6); }
+  .bf-node .bf-price { font-size: 13px; font-weight: 700; font-family: 'IBM Plex Mono', monospace; }
+  .bf-node.us .bf-price { color: #60A5FA; }
+  .bf-arr { color: #6B6860; font-size: 12px; flex-shrink: 0; }
+
+  /* ── PEOPLE ── */
+  .role-card { background: #fff; border: 0.5px solid #DEDBD5; border-radius: 10px; padding: 18px 20px; }
+  .role-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+
+  /* ── FOOTNOTE ── */
+  .footnote { font-size: 11px; color: #6B6860; line-height: 1.7; margin-top: 8px; }
+
+  @media (max-width: 640px) {
+    .row2, .row3 { grid-template-columns: 1fr; }
+    body { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <h1>(가칭) 디지털존 F&amp;T 사업 기획안</h1>
+  <p class="subtitle">Fragmentation &amp; Token · 전략기획팀 · 2026.07.06 · Draft v2</p>
+
+  <!-- 01 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">01</span>사업 정의</div>
+    <p class="sec-desc">중소·중견기업을 위한 맞춤형 통합 비즈니스 솔루션 플랫폼</p>
+  </div>
+  <div class="card">
+    <ul class="bull dark">
+      <li>각기 다른 공급사의 SW 솔루션(그룹웨어·ERP·CRM·HR 등)을 고객 맞춤형으로 큐레이션하여 디지털존에서 판매·제공</li>
+      <li>고객이 선택한 솔루션 간 백엔드 데이터 자동 연동 — 별도 SI 구축 없이 구매 즉시 사용 가능</li>
+      <li>복수의 솔루션을 이용하더라도 디지털존 단일 청구 체계로 통합 정산</li>
+      <li>사용량·현황은 디지털존 대시보드에서 통합 확인</li>
+    </ul>
+  </div>
+
+  <!-- 02 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">02</span>시장 배경 및 Pain Point</div>
+    <p class="sec-desc">중소·중견기업은 비용·기술적 한계로 SW 솔루션의 통합 운영에 어려움을 겪고 있으며, 이를 해소할 시장 수요가 존재함</p>
+  </div>
+  <div class="row3">
+    <div class="card">
+      <div class="badge badge-bl">Pain Point 01</div>
+      <div class="card-title">SaaS 파편화 · 데이터 단절</div>
+      <ul class="bull gray">
+        <li>ERP·CRM·HR 등 솔루션을 각각 다른 공급사에서 도입, 시스템 간 데이터 연동 없이 운영</li>
+        <li>하나의 데이터 변경 시 각 시스템에 별도 반영 필요 — 운영 비효율 발생</li>
+        <li>통합 현황 파악이 어려워 의사결정 속도 저하</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="badge badge-bl">Pain Point 02</div>
+      <div class="card-title">통합 개발·유지보수 부담</div>
+      <ul class="bull gray">
+        <li>자체 통합 시스템 구축 시 SI 개발 비용 부담 — SMB는 감당 어려움</li>
+        <li>SI 외주 방식은 개발자 퇴사·교체 시 히스토리 단절, 고도화 난이도 상승</li>
+        <li>기술 내재화도 채용·판관비 부담으로 쉽지 않은 선택</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="badge badge-bl">Pain Point 03</div>
+      <div class="card-title">복수 정산 피로도</div>
+      <ul class="bull gray">
+        <li>솔루션별 공급사와 개별 계약·세금계산서 발행 관리 필요</li>
+        <li>담당자 부재·교체 시 정산 이력 파악 어려움</li>
+        <li>갱신 시기·조건이 솔루션마다 달라 누락 리스크 상존</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">03</span>핵심 가치 / 서비스 개념</div>
+    <p class="sec-desc">솔루션 선택부터 연동·관리·정산까지 디지털존 하나에서 완결</p>
+  </div>
+
+  <!-- 서비스 개념: 프로세스 흐름 -->
+  <div style="font-size:13px; font-weight:700; color:#1A1915; margin-bottom:8px;">서비스 개념 — 디지털존 내 전체 프로세스</div>
+  <div class="flow-wrap" style="background:#EFEFED; border:0.5px solid #DEDBD5;">
+    <div class="flow">
+      <div class="flow-step" style="background:#fff; border:0.5px solid #DEDBD5; color:#1A1915;">① 솔루션 선택 · 구매</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="background:#fff; border:0.5px solid #DEDBD5; color:#1A1915;">② 즉시 데이터 연동</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="background:#fff; border:0.5px solid #DEDBD5; color:#1A1915;">③ 사용량 통합 확인</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step" style="background:#fff; border:0.5px solid #DEDBD5; color:#1A1915;">④ 월 1회 통합 정산</div>
+    </div>
+    <div style="text-align:center; margin-top:12px; font-size:12px; color:#6B6860;">위 모든 단계가 디지털존 내에서 처리됨</div>
+  </div>
+
+  <!-- 핵심 가치: 3개 카드 -->
+  <div style="font-size:13px; font-weight:700; color:#1A1915; margin-top:20px; margin-bottom:8px;">핵심 가치</div>
+  <div class="row3">
+    <div class="card">
+      <div class="badge badge-bl">솔루션 큐레이션</div>
+      <ul class="bull gray">
+        <li>분야별 검증된 SW 솔루션을 디지털존에서 제공</li>
+        <li>고객은 필요한 솔루션만 선택하여 구독</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="badge badge-bl">데이터 자동 연동</div>
+      <ul class="bull gray">
+        <li>선택한 솔루션 간 데이터를 디지털존 서버가 중간에서 연결</li>
+        <li>별도 SI 없이 구매 즉시 연동된 형태로 사용 가능</li>
+        <li>디지털존에서 구매한 솔루션에 한해 연동 제공 (별도 계약 중인 SW는 해지 후 이전하거나 기존 그대로 유지하는 방식 중 선택 가능)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="badge badge-bl">통합 빌링 · 관리</div>
+      <ul class="bull gray">
+        <li>복수 솔루션 이용료를 디지털존이 일괄 수령하여 각 벤더사에 정산</li>
+        <li>고객은 매월 1회 단일 청구서로 정산 완결</li>
+        <li>사용량·현황은 디지털존 대시보드에서 통합 확인</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">04</span>기술 구조</div>
+    <p class="sec-desc">벤더사 API를 디지털존 서버에서 수집·저장하고, 고객별 선택 솔루션에 맞게 데이터를 재분배하는 미들레이어 구조</p>
+  </div>
+
+  <div class="arch-wrap">
+    <svg width="100%" viewBox="0 0 880 310" xmlns="http://www.w3.org/2000/svg" style="display:block; min-width:700px;">
+      <defs>
+        <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- Layer Labels -->
+      <text x="120" y="18" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#6B6860" font-weight="600" letter-spacing="1">VENDOR LAYER</text>
+      <text x="450" y="18" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#185FA5" font-weight="600" letter-spacing="1">DIGITALZONE PLATFORM</text>
+      <text x="760" y="18" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#3B6D11" font-weight="600" letter-spacing="1">CUSTOMER LAYER</text>
+
+      <!-- Platform BG -->
+      <rect x="300" y="26" width="300" height="262" rx="12" fill="#1A1F3A" opacity="0.05"/>
+
+      <!-- ── VENDOR: 단일 노드 + 예시 나열 ── -->
+      <rect x="10" y="36" width="224" height="252" rx="10" fill="#EFEFED" stroke="#DEDBD5" stroke-width="0.5"/>
+      <text x="122" y="66" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">SW 벤더사</text>
+      <text x="122" y="88" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#6B6860">API 제공 · 콜수 기준 과금</text>
+      <line x1="30" y1="102" x2="214" y2="102" stroke="#DEDBD5" stroke-width="0.5"/>
+      <text x="122" y="122" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#888780">예) 그룹웨어, ERP, CRM,</text>
+      <text x="122" y="142" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#888780">HR, 전자결재, 회계,</text>
+      <text x="122" y="162" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#888780">물류, 마케팅 자동화 등</text>
+      <text x="122" y="188" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="11" fill="#ABABAB">(카테고리 순차 확대)</text>
+
+      <!-- Arrow Vendor → Platform -->
+      <line x1="234" y1="162" x2="298" y2="162" stroke="#888780" stroke-width="1.2" marker-end="url(#arr)"/>
+
+      <!-- ── PLATFORM NODES ── -->
+      <rect x="308" y="36" width="284" height="68" rx="8" fill="#1A1F3A"/>
+      <text x="450" y="64" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#fff">API 수집 · 통합 저장 서버</text>
+      <text x="450" y="84" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="rgba(255,255,255,0.55)">벤더사 API 스펙 일괄 수집 및 저장</text>
+
+      <rect x="308" y="116" width="284" height="68" rx="8" fill="#1A1F3A" opacity="0.82"/>
+      <text x="450" y="144" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#fff">데이터 라우팅 엔진</text>
+      <text x="450" y="164" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="rgba(255,255,255,0.55)">고객 선택 솔루션에 따라 데이터 재분배</text>
+
+      <rect x="308" y="196" width="284" height="68" rx="8" fill="#1A1F3A" opacity="0.65"/>
+      <text x="450" y="224" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#fff">토큰 과금 엔진</text>
+      <text x="450" y="244" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="rgba(255,255,255,0.55)">API 콜수 집계 · 고객/벤더사 정산 처리</text>
+
+      <!-- Arrows Platform → Customer -->
+      <line x1="592" y1="110" x2="634" y2="76" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arr-blue)"/>
+      <line x1="592" y1="150" x2="634" y2="150" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arr-blue)"/>
+      <line x1="592" y1="210" x2="634" y2="224" stroke="#185FA5" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arr-blue)"/>
+
+      <!-- ── CUSTOMER NODES ── -->
+      <rect x="636" y="36" width="230" height="68" rx="8" fill="#EAF3DE" stroke="#C2DFA0" stroke-width="0.5"/>
+      <text x="751" y="64" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">고객사 A</text>
+      <text x="751" y="84" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#3B6D11">선택 솔루션 데이터 수신</text>
+
+      <rect x="636" y="116" width="230" height="68" rx="8" fill="#EAF3DE" stroke="#C2DFA0" stroke-width="0.5"/>
+      <text x="751" y="144" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">고객사 B</text>
+      <text x="751" y="164" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#3B6D11">선택 솔루션 데이터 수신</text>
+
+      <!-- Dashboard — 파란 테두리로 고객사와 명확히 구분 -->
+      <rect x="636" y="196" width="230" height="92" rx="8" fill="#E8F0FB" stroke="#185FA5" stroke-width="2"/>
+      <text x="751" y="226" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#185FA5" font-weight="700" letter-spacing="1">DIGITALZONE</text>
+      <text x="751" y="248" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#185FA5">관리 대시보드</text>
+      <text x="751" y="272" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#185FA5" opacity="0.75">사용량 확인 · 통합 정산서 발행</text>
+    </svg>
+  </div>
+
+  <!-- 05 서비스 모델 구조 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">05</span>서비스 모델 구조</div>
+    <p class="sec-desc">고객이 실제로 서비스를 이용하는 흐름 — 예시 기준</p>
+  </div>
+
+  <div style="font-size:13px; font-weight:700; color:#1A1915; margin-bottom:8px;">예시 — 고객사가 A제품(ERP) · B제품(CRM) · C제품(HR) 3개 구독한 경우</div>
+
+  <!-- 서비스 흐름 SVG -->
+  <div class="arch-wrap">
+    <svg width="100%" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg" style="display:block; min-width:680px;">
+      <defs>
+        <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+        <marker id="arr2-bl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+
+      <!-- STEP 1: 고객사 -->
+      <rect x="10" y="90" width="160" height="84" rx="8" fill="#EAF3DE" stroke="#C2DFA0" stroke-width="0.5"/>
+      <text x="90" y="122" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">고객사 담당자</text>
+      <text x="90" y="143" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#3B6D11">A제품(ERP)에 직접 접속</text>
+      <text x="90" y="162" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#3B6D11">데이터 입력</text>
+      <text x="90" y="76" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#6B6860">① 각 솔루션에 직접 접속하여 사용</text>
+
+      <!-- Arrow 1 -->
+      <line x1="170" y1="132" x2="218" y2="132" stroke="#888780" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+      <!-- STEP 2: 디지털존 서버 -->
+      <rect x="220" y="90" width="180" height="84" rx="8" fill="#1A1F3A"/>
+      <text x="310" y="122" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#fff">디지털존 서버</text>
+      <text x="310" y="143" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">데이터 수신 후</text>
+      <text x="310" y="162" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">바이패스 처리</text>
+      <text x="310" y="76" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#6B6860">② 데이터 경유 · 분배</text>
+
+      <!-- Arrow 2 위/중/아래 -->
+      <line x1="400" y1="112" x2="448" y2="72" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arr2-bl)"/>
+      <line x1="400" y1="132" x2="448" y2="132" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arr2-bl)"/>
+      <line x1="400" y1="152" x2="448" y2="192" stroke="#185FA5" stroke-width="1.2" marker-end="url(#arr2-bl)"/>
+
+      <!-- STEP 3: 솔루션들 -->
+      <rect x="450" y="36" width="170" height="62" rx="8" fill="#EFEFED" stroke="#DEDBD5" stroke-width="0.5"/>
+      <text x="535" y="62" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">B제품 (CRM)</text>
+      <text x="535" y="82" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#6B6860">데이터 자동 반영</text>
+
+      <rect x="450" y="101" width="170" height="62" rx="8" fill="#EFEFED" stroke="#DEDBD5" stroke-width="0.5"/>
+      <text x="535" y="127" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">A제품 (ERP)</text>
+      <text x="535" y="147" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#6B6860">입력 원본</text>
+
+      <rect x="450" y="166" width="170" height="62" rx="8" fill="#EFEFED" stroke="#DEDBD5" stroke-width="0.5"/>
+      <text x="535" y="192" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#1A1915">C제품 (HR)</text>
+      <text x="535" y="212" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#6B6860">데이터 자동 반영</text>
+
+      <text x="535" y="22" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#6B6860">③ 별도 입력 없이 연동 완료</text>
+
+      <!-- Arrow 3 -->
+      <line x1="620" y1="132" x2="668" y2="132" stroke="#888780" stroke-width="1.2" marker-end="url(#arr2)"/>
+
+      <!-- STEP 4: 디지털존 정산 -->
+      <rect x="670" y="90" width="178" height="84" rx="8" fill="#E8F0FB" stroke="#185FA5" stroke-width="1.5"/>
+      <text x="759" y="120" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#185FA5" font-weight="700" letter-spacing="0.5">DIGITALZONE</text>
+      <text x="759" y="141" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="15" font-weight="700" fill="#185FA5">월 1회 통합 청구</text>
+      <text x="759" y="162" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#185FA5" opacity="0.75">A+B+C 단일 청구서</text>
+      <text x="759" y="76" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="12" fill="#6B6860">④ 통합 정산</text>
+
+      <!-- 하단 안내 -->
+      <rect x="10" y="246" width="838" height="26" rx="6" fill="#FEF3C7"/>
+      <text x="429" y="263" text-anchor="middle" font-family="'Noto Sans KR',sans-serif" font-size="13" fill="#92400E">※ 데이터는 디지털존 서버를 경유하며 저장·학습되지 않음 — <tspan font-weight="700" fill="#7B1C2E">별도 보안 이슈 없음</tspan></text>
+    </svg>
+  </div>
+
+  <!-- 06 과금 체계 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">06</span>과금 체계 (수익 모델)</div>
+    <p class="sec-desc">인프라 유형에 따라 클라우드와 온프레미스로 구분하여 적용</p>
+  </div>
+
+  <!-- 클라우드 -->
+  <div class="pricing-type">
+    <div style="font-size:13px; font-weight:700; color:#1A1915; margin-bottom:8px;">☁️ 클라우드 — API 쿼리 기반 토큰 종량제</div>
+    <div class="row3">
+      <div class="pricing-box">
+        <div class="badge badge-gr">방식 A · 마진 부가</div>
+        <h4>벤더사 정산가에 마진율을 붙여 고객 청구</h4>
+        <div class="billing-flow">
+          <div class="bf-node vendor"><div class="bf-name">벤더사</div><div class="bf-price">100원<br>/콜</div></div>
+          <div class="bf-arr">→</div>
+          <div class="bf-node us"><div class="bf-name">디지털존</div><div class="bf-price">+30%<br>마진</div></div>
+          <div class="bf-arr">→</div>
+          <div class="bf-node cust"><div class="bf-name">고객사</div><div class="bf-price">130원<br>/콜</div></div>
+        </div>
+        <ul class="bull gray">
+          <li>계산 구조 단순 — 오류 가능성 낮음</li>
+          <li>마진율 고정으로 안정적 수익 예측 가능</li>
+          <li>솔루션 수에 관계없이 일정 마진 확보</li>
+          <li>고객 입장에서 비용 예측이 쉬워 부담 낮음</li>
+        </ul>
+      </div>
+      <div class="pricing-box">
+        <div class="badge badge-gr">방식 B · 내부 콜수 적용</div>
+        <h4>디지털존 내부 발생 콜수에 별도 단가 적용</h4>
+        <div class="billing-flow">
+          <div class="bf-node vendor"><div class="bf-name">벤더사</div><div class="bf-price">100원<br>/콜</div></div>
+          <div class="bf-arr">→</div>
+          <div class="bf-node us"><div class="bf-name">디지털존</div><div class="bf-price">콜수×<br>단가</div></div>
+          <div class="bf-arr">→</div>
+          <div class="bf-node cust"><div class="bf-name">고객사</div><div class="bf-price">실사용<br>청구</div></div>
+        </div>
+        <div style="background:#EFEFED; border-radius:8px; padding:10px 12px; margin:10px 0; font-size:12px; color:#6B6860; line-height:1.7;">
+          <strong style="color:#1A1915; display:block; margin-bottom:4px;">예) A+B+C 3개 선택 시</strong>
+          수신 1콜<br>+ B 전달 1콜<br>+ C 전달 1콜<br>= <strong style="color:#1A1915;">총 3콜 × 단가</strong>
+        </div>
+        <ul class="bull gray">
+          <li>선택 솔루션 수가 많을수록 콜수 증가 → 수익 확대</li>
+          <li>실제 데이터 처리량과 수익이 비례하는 구조</li>
+          <li>솔루션 수 증가 시 고객 비용 부담 증가 가능</li>
+          <li>아키텍처 설계 및 콜수 집계 로직 선결 필요</li>
+        </ul>
+      </div>
+      <div class="pricing-box">
+        <div class="badge badge-gr">방식 C · 하이브리드</div>
+        <h4>낮은 기본 정찰제 + 콜수 기반 종량제 혼합</h4>
+        <div class="billing-flow">
+          <div class="bf-node vendor"><div class="bf-name">기본료</div><div class="bf-price">저가<br>정액</div></div>
+          <div class="bf-arr">+</div>
+          <div class="bf-node us"><div class="bf-name">사용분</div><div class="bf-price">콜수×<br>단가</div></div>
+          <div class="bf-arr">→</div>
+          <div class="bf-node cust"><div class="bf-name">고객사</div><div class="bf-price">합산<br>청구</div></div>
+        </div>
+        <ul class="bull gray">
+          <li>기본료를 낮게 설정해 진입 장벽 완화</li>
+          <li>실사용량에 따라 추가 과금 — 수익 연동 구조</li>
+          <li>고객·공급자 모두 리스크 분산 가능</li>
+          <li>요금제 설계 시 기본료·단가 시뮬레이션 필요</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footnote">※ 과금 방식은 아키텍처 구조 파악 및 시뮬레이션 후 확정 예정 · 클라우드 환경에 한해 적용</p>
+  </div>
+
+  <hr class="div">
+
+  <!-- 온프레미스 -->
+  <div class="pricing-type">
+    <div style="font-size:13px; font-weight:700; color:#1A1915; margin-bottom:8px;">🖥️ 온프레미스 — 3가지 방안 검토</div>
+    <div class="row3">
+      <div class="pricing-box">
+        <div class="badge badge-gr">1안 · 에이전트 설치</div>
+        <h4>고객사 서버에 에이전트를 심어 자동 집계</h4>
+        <ul class="bull gray">
+          <li>사용량을 실시간으로 자동 수집 — 종량제 적용 가능</li>
+          <li>단, 온프레미스 도입 업체는 보수적 성향이 강해 에이전트 설치 수용 가능성 낮음</li>
+          <li>현실적으로 적용 난이도 높음</li>
+        </ul>
+      </div>
+      <div class="pricing-box">
+        <div class="badge badge-gr">2안 · 월 정액제</div>
+        <h4>사용량 관계없이 월 고정 금액 청구</h4>
+        <ul class="bull gray">
+          <li>별도 집계 없이 운영 가능 — 구조 단순</li>
+          <li>고객 입장에서 비용 예측 용이</li>
+          <li>실사용량과 무관하게 동일 과금 — 헤비 유저 대응 어려움</li>
+        </ul>
+      </div>
+      <div class="pricing-box">
+        <div class="badge badge-gr">3안 · 고객 직접 미터링</div>
+        <h4>고객이 사용량 직접 업로드 + 연 1회 현장 검수</h4>
+        <ul class="bull gray">
+          <li>고객이 월별 사용량을 직접 업로드하여 청구</li>
+          <li>디지털존은 연 1회 현장 방문 검수 — 오차 발생 시 추가 과금</li>
+          <li>에이전트 불필요 — 온프레미스 업체 수용 가능성 상대적으로 높음</li>
+        </ul>
+      </div>
+    </div>
+    <p class="footnote">※ 온프레미스 과금 방안은 벤더사 협의 및 고객 수용성 검토 후 확정 예정</p>
+  </div>
+
+  <!-- 07 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">07</span>필요 인력 / R&R</div>
+    <p class="sec-desc">본 사업 추진을 위한 개발 직군별 주요 역할 정의</p>
+  </div>
+
+  <div class="row3">
+    <div class="role-card">
+      <div class="badge badge-nv">PM</div>
+      <h4>프로젝트 총괄</h4>
+      <ul class="bull gray">
+        <li>전체 일정·이슈 관리</li>
+        <li>벤더사·디지털존 연동 조율</li>
+        <li>토큰 과금·데이터 연동 요건 정의</li>
+        <li>이해관계자 커뮤니케이션</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <div class="badge badge-nv">Backend</div>
+      <h4>서버·API·과금</h4>
+      <ul class="bull gray">
+        <li>벤더사 API 연동 및 데이터 수집</li>
+        <li>데이터 라우팅 로직 구현</li>
+        <li>API 콜수 기반 토큰 과금 엔진</li>
+        <li>정산·페이먼트 연동</li>
+      </ul>
+    </div>
+    <div class="role-card">
+      <div class="badge badge-nv">Frontend</div>
+      <h4>화면·UX</h4>
+      <ul class="bull gray">
+        <li>솔루션 선택·구매 UI</li>
+        <li>사용량 통합 대시보드</li>
+        <li>정산서·페이먼트 페이지</li>
+        <li>디지털존 내 연동 화면</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-gray" style="margin-top:10px;">
+    <ul class="bull gray">
+      <li>위 개발 인력 외 서비스 기획, QA, 퍼블리셔 등 비개발 직군은 세부 요건 정의 후 별도 산정</li>
+      <li>인력 조달 방식(내재화·외주)은 IT 부문 협의 후 결정</li>
+    </ul>
+  </div>
+
+  <!-- 08 -->
+  <div class="sec-block">
+    <div class="sec-title"><span class="sec-num">08</span>기대효과 및 비전</div>
+    <p class="sec-desc">사업을 통해 기대되는 고객·플랫폼·전략적 효과</p>
+  </div>
+
+  <div class="card-navy" style="margin-bottom:10px;">
+    <div style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.45); letter-spacing:2px; margin-bottom:8px;">VISION</div>
+    <div style="font-size:17px; font-weight:700; color:#fff; line-height:1.5; margin-bottom:4px;">SMB의 디지털 전환을 리드하는 B2B SaaS 통합 플랫폼</div>
+    <div style="font-size:13px; color:rgba(255,255,255,0.55);">구매·연동·관리·정산까지 디지털존 하나로 완결</div>
+  </div>
+
+  <div class="row3">
+    <div class="card">
+      <div class="badge badge-bl">고객 관점</div>
+      <ul class="bull gray">
+        <li>SaaS 도입·운영 비용 절감</li>
+        <li>데이터 연동으로 운영 효율 향상</li>
+        <li>정산 업무 단순화 및 누락 리스크 제거</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="badge badge-bl">디지털존 관점</div>
+      <ul class="bull gray">
+        <li>단순 커머스를 넘어 구독·관리 기반 플랫폼으로 진화</li>
+        <li>고객·파트너·벤더사 생태계를 디지털존 안에서 구축</li>
+        <li>마켓플레이스 확장의 실질적 발판 마련</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="badge badge-bl">전략적 의미</div>
+      <ul class="bull gray">
+        <li>토큰 과금 체계를 선제적으로 운영 — 제도 변화 대응 역량 확보</li>
+        <li>데이터 기반 과금·운영 노하우 내재화</li>
+        <li>향후 솔루션 카테고리 확대 시 확장성 확보</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
